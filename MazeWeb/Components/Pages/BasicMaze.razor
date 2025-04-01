@@ -18,21 +18,10 @@
         
         MazeCell startLocation = MazeUtilities.mazeFor(userName);
 
-        List<NodeLink> path = MazeUtilities.ExploreMaze(startLocation);
-            IEnumerable<string> instructions = path.Select(l => l.Label);
-            
-            pathOutOfMaze = string.Join(", ", instructions);
-            Console.WriteLine($"Path: {pathOutOfMaze} from {path.Count} nodes found");
-        /* Set a breakpoint here to explore your maze! */
-
-        if (MazeUtilities.isPathToFreedom(startLocation, pathOutOfMaze))
-        {
-            Console.WriteLine("Congratulations! You've found a way out of your labyrinth.");
-        }
-        else
-        {
-            Console.WriteLine("Sorry, but you're still stuck in your labyrinth.");
-        }
+        var startingCell = MazeUtilities.mazeFor(userName);
+        var path = MazeUtilities.ExploreMaze(startingCell);
+        var instructions = path.Select(node => $"{node.From.Id}[\"{node.From}\"]--{node.Label}-->{node.To.Id}[\"{node.To}\"]");
+        pathOutOfMaze = "graph TD\n" + string.Join("\n", instructions);
 
     }
 }
