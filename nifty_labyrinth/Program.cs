@@ -12,6 +12,7 @@ string YOUR_NAME = "Eric Weston";
 string PATH_OUT_OF_MAZE = "WNWSSSNNNEEESSWWSNEESW";
 string PATH_OUT_OF_TWISTY_MAZE = "SSEENNEWE";
 
+
 MazeCell startLocation = MazeUtilities.mazeFor(YOUR_NAME);
 
 /* Set a breakpoint here to explore your maze! */

@@ -29,6 +29,52 @@ public class MazeUtilities
      * @return Whether that sequence of moves picks up the needed items
      *         without making nay illegal moves.
      */
+
+     public static List<NodeLink>ExploreMaze(MazeCell start){
+        List<NodeLink> visited = new();
+        visited = ExploreNode(start, visited);
+        return visited;
+     }
+
+     private static List<NodeLink> ExploreNode(MazeCell start, List<NodeLink> visited){
+        if(start == null){
+            return visited;
+        }
+
+        if(start.North != null){
+            var next = new NodeLink(start, "N", start.North);
+            if(visited.Contains(next) == false){
+                visited.Add(next);
+                visited = ExploreNode(start.North, visited);
+            }
+        }
+
+        if(start.South != null){
+            var next = new NodeLink(start, "S", start.South);
+            if(visited.Contains(next) == false){
+                visited.Add(next);
+                visited = ExploreNode(start.South, visited);
+            }
+        }
+
+        if(start.East != null){
+            var next = new NodeLink(start, "E", start.East);
+            if(visited.Contains(next) == false){
+                visited.Add(next);
+                visited = ExploreNode(start.East, visited);
+            }
+        }
+
+        if(start.West != null){
+            var next = new NodeLink(start, "W", start.West);
+            if(visited.Contains(next) == false){
+                visited.Add(next);
+                visited = ExploreNode(start.West, visited);
+            }
+        }
+
+        return visited;
+     }
     public static bool isPathToFreedom(MazeCell start, String moves)
     {
         MazeCell? curr = start;
